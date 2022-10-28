@@ -58,11 +58,6 @@ library(VennDiagram)
 load("XXX/PBMC_Immune.combined_scT_every_filt_20191017.Robj")
 setwd("XXX/RFigs")
 
-# Example
-load("C:/Users/adkim/Documents/NKCellTests/PBMC_Immune.combined_scT_every_filt_20191017.Robj")
-setwd("C:/Users/adkim/Documents/NKCellTests")
-
-
 # This code here just reorganizes the cell types for aesthetic reasons. 
 # I keep it all here so you can organize it easily however you want, but you'll need to read the labels
 
@@ -237,7 +232,7 @@ BiocManager::install("SingleCellExperiment")
 # This is a fussy download, try a few times, and don't update things it asks for, usually unnecessary
 devtools::install_github("iaconogi/bigSCale2")
 
-library("bigSCale", lib.loc="C:/Users/adkim/AppData/Local/R/win-library/4.2")
+library("bigSCale", lib.loc="~/R/win-library/4.2")
 
 # Convert Seurat data to SingeCellExperiment Type
 # install scater https://bioconductor.org/packages/release/bioc/html/scater.html
@@ -250,7 +245,7 @@ install.packages("textshape")
 # 'mojaveazure/loomR', ref = 'develop')
 remotes::install_github(repo = 'mojaveazure/loomR', ref = 'develop')
 
-library("bigSCale", lib.loc="C:/Users/adkim/AppData/Local/R/win-library/4.2")
+library("bigSCale", lib.loc="~/R/win-library/4.2")
 library(devtools)
 library(scater)
 library(bigSCale)
@@ -267,15 +262,10 @@ library(cowplot)
 load("XXX/PBMC_Immune.combined_scT_every_filt_20191017.Robj")
 setwd("XXX/RFigs")
 
-# Example
-load("C:/Users/adkim/Documents/NKCellTests/PBMC_Immune.combined_scT_every_filt_20191017.Robj")
-setwd("C:/Users/adkim/Documents/NKCellTests")
-
 # List of Compiled DE Genes
 
-targets <- read.csv("XXX/All_genes_v2.csv", header = FALSE)
+targets <- read.csv("XXX/All_genes.csv", header = FALSE)
 
-targets <- read.csv("C:/Users/adkim/Documents/NKCellTests/All_genes_v2.csv", header = FALSE)
 NKCtargets <-targets$V1 
 rm(targets)
 
@@ -556,8 +546,6 @@ p
 dev.off()
 
 
-
-
 ########################################
 ##                                    ##
 ##            Upset Test              ##
@@ -566,10 +554,6 @@ dev.off()
 
 setwd("XXX/RFigs")
 NK_CD8_LPS_UP_Reorder <- read.csv("###/NK_CD8_LPS_UP_Reorder.csv")
-
-# Example
-setwd("C:/Users/adkim/Documents/NKCellTests")
-NK_CD8_LPS_UP_Reorder <- read.csv("C:/Users/adkim/Documents/NKCellTests/NK_CD8_LPS_UP_Reorder.csv")
 
 # This will create Figure 2A
 list <- colnames(NK_CD8_LPS_UP_Reorder)
@@ -601,10 +585,6 @@ upset(NK_CD8_LPS_UP_Reorder,
 NK_CD8_Basal_UP <- read.csv("XXX/NK_CD8_Basal_UP.csv")
 setwd("XXX/RFigs")
 
-# Example
-NK_CD8_Basal_UP <- read.csv("C:/Users/adkim/Documents/NKCellTests/NK_CD8_Basal_UP.csv")
-setwd("C:/Users/adkim/Documents/NKCellTests")
-
 Z<-calculate.overlap(list(NK=NK_CD8_Basal_UP[,1], CD8_1=NK_CD8_Basal_UP[,2], 
                           CD8_2=NK_CD8_Basal_UP[,3], CD8_3=NK_CD8_Basal_UP[,4], CD8_4=NK_CD8_Basal_UP[,5]))
 a<-venn.diagram(x=list(NK=NK_CD8_Basal_UP[,1], CD8_1=NK_CD8_Basal_UP[,2], 
@@ -618,14 +598,9 @@ a<-venn.diagram(x=list(NK=NK_CD8_Basal_UP[,1], CD8_1=NK_CD8_Basal_UP[,2],
 NK_CD8_Basal_UP <- read.csv("XXX/NK_CD8_Basal_DOWN.csv")
 setwd("XXX/RFigs")
 
-# Example
-NK_CD8_Basal_DOWN <- read.csv("C:/Users/adkim/Documents/NKCellTests/NK_CD8_Basal_DOWN.csv")
-setwd("C:/Users/adkim/Documents/NKCellTests")
-
 Z<-calculate.overlap(list(NK=NK_CD8_Basal_UP[,1], CD8_1=NK_CD8_Basal_UP[,2], 
                           CD8_2=NK_CD8_Basal_UP[,3] ))
 a<-venn.diagram(x=list(NK=NK_CD8_Basal_DOWN[,1], CD8_1=NK_CD8_Basal_DOWN[,2], 
                        CD8_2=NK_CD8_Basal_DOWN[,3]), 
                 filename = "NK_Basal_Down.tiff")
-
 
